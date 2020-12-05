@@ -1,0 +1,7 @@
+1. search existing user --done
+2. show the list  --done
+3. add item --done
+4. clear controls --done
+5. add new user and item in that --done
+6. edit item 
+7. delete item
