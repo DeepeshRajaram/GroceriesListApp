@@ -3,32 +3,35 @@
     <head>
         <script type="text/javascript" src="js/app.js"></script>
         <script type="text/javascript" src="js/data.js"></script>
+        <link rel="stylesheet" href="css/style.css"></link>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet"
+    />
     </head>
     <body>
-        <div>
-        <label>Search User</label>
-        <input name="username" id="username" />
-        <input type="button" value="Search" onclick="getUser()"/>
-        </div>
-        <div>
-            <input name="grocery" id="grocery" />
-            <input type="button" id="btnAddItem" value="Add Item" onclick="addItemToExistingUser()" />
-        </div>
-        <div>
-            <input type="button" value="Clear All" onclick="clearAll()" />
-        </div>
-        <div>
-            <label id="diplayUserName"></label>
-            <label id="groceryItems"></label>
-        </div>
-        <div>
+        
+        <div class="mainContainer centerAlign">
+            <header>
+                <h1>The Groceries List</h1>
+              </header>
+            <div>
+            <input type="text" name="username" id="username" placeholder="Search User" />
+            <input type="button" value="Search" onclick="getUser()"/>
+            </div>
+            <div>
+                <input type="text" name="grocery" id="grocery" placeholder="Type Grocery Item" />
+                <input type="button" id="btnAddItem" value="Add Item" onclick="addItemToExistingUser()" />
+            </div>
+            <div>
+                <input type="button" value="Clear All" onclick="clearAll()" />
+            </div>
+            <div>
             <table id="tblGrocery">
                 <tr>
                     <th>Name</th>
                     <th>Action</th>
                 </tr> 
             </table>
+            </div>
         </div>
-
     </body>
 </html>

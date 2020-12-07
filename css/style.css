@@ -1,0 +1,44 @@
+.mainContainer{
+    width: 100%;
+}
+
+.centerAlign{
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+}
+
+input[type=text] {
+    height: 35px;
+    position: relative;
+    outline: none;
+    border: 1px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    font-size: 18px;
+    padding: 0;
+    left: 0;
+    background-color: white;
+  }
+
+  input[type=button]{
+      display: inline-block;
+      background-color:#eff5f5;
+      border-radius: 5px;
+      font-size: 20px;
+  }
+
+  table{
+    font-family: Arial,  sans-serif;
+    border-collapse: collapse;
+    width: 300px;
+  }
+
+  td, th{
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+  }
+
+  tr:nth-child(even){
+      background-color: #dddddd;
+  }

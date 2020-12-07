@@ -1,52 +1,23 @@
-// function InitializeLocalStorage(){
-//     localStorage.setItem("userData", userData);
-//     // localStorage.setItem("user1","['Fruits','Vegetables','Bread']");
-//     // localStorage.setItem("user2","['Bread','Jam']");
-//     // localStorage.setItem("user3","['Sugar','Salt','Oil', 'Rice','Cookies']");
-// }
-
-// InitializeLocalStorage();
-
-function getGroceriesList()
-{
-    let searchUser = document.getElementById('username').value;
-    
-    if(searchUser.length==0)
-    {
-        alert("Enter user to search");
-        return;
-    }
-
-    let findUser = localStorage.getItem(searchUser);
-    if(findUser == null)
-    {
-        alert("user is not available");
-        return;
-    }
-    else
-    {
-        document.getElementById('diplayUserName').innerHTML = searchUser;
-        document.getElementById('groceryItems').innerHTML = findUser;
-    }
-}
-
 function getUser()
 {
-    let data = JSON.parse(localStorage.getItem("userData"));
+    let localData = JSON.parse(localStorage.getItem("userData"));
     let username = document.getElementById('username').value;
+    if(username ===""){
+        alert("Please enter user name");
+        return;
+    }
+
     let selectedUser = null;
-    for(let i = 0;i<data.length;i++)
+    for(let i = 0;i<localData.length;i++)
     {
-        if(data[i].name === username)
+        if(localData[i].name === username)
         {
-            selectedUser = data[i];
+            selectedUser = localData[i];
         }
     }
    
     if(selectedUser != null)
     {
-        document.getElementById('diplayUserName').innerHTML = selectedUser.name;
-        document.getElementById('groceryItems').innerHTML = selectedUser.groceryList;
         showGroceryList(selectedUser.groceryList);
         localStorage.setItem("selectedUser", JSON.stringify(selectedUser));
     }                
@@ -71,7 +42,7 @@ function addItemToExistingUser(){
         return;
     }
 
-    if(!isNaN(editItem.dataset.itemVal) && parseInt(editItem.dataset.itemVal)>0)
+    if(!isNaN(parseInt(editItem.dataset.itemVal)))
     {
         let itemValue = parseInt(editItem.dataset.itemVal);
         for(let i=0; i<selectedUser.groceryList.length; i++)
@@ -82,17 +53,20 @@ function addItemToExistingUser(){
             }
         }
         localStorage.setItem("selectedUser",JSON.stringify(selectedUser));
-        let data = JSON.parse(localStorage.getItem("userData"));
-        for(let i in data)
+        let localData = JSON.parse(localStorage.getItem("userData"));
+        for(let i in localData)
         {
-            if(data[i].name == selectedUser.name)
+            if(localData[i].name == selectedUser.name)
             {
-                data[i].groceryList = selectedUser.groceryList;
+                localData[i].groceryList = selectedUser.groceryList;
                 break;
             }
         }
-        localStorage.setItem("userData",JSON.stringify(data));
+        localStorage.setItem("userData",JSON.stringify(localData));
         showGroceryList(selectedUser.groceryList);
+        editItem.value="Add Item";
+        document.getElementById("grocery").value ="";
+        editItem.dataset.itemVal="";
         return;
     }
 
@@ -104,7 +78,7 @@ function addItemToExistingUser(){
     else
     {
         selectedUser.groceryList.push(newItem);
-        document.getElementById('groceryItems').innerHTML = selectedUser.groceryList;
+        
         let data = JSON.parse(localStorage.getItem("userData"));
         for(let i in data)
         {
@@ -126,8 +100,6 @@ function clearAll()
 {
     document.getElementById("grocery").value = "";
     document.getElementById("username").value = "";
-    document.getElementById("diplayUserName").innerHTML="";
-    document.getElementById("groceryItems").innerHTML="";
 }
 
 function createUser()
@@ -193,8 +165,18 @@ function DeleteItem(index){
         }
     }
     localStorage.setItem("selectedUser",JSON.stringify(selectedUser));
-    showGroceryList(selectedUser.groceryList);
-}
+    let localData = JSON.parse(localStorage.getItem("userData"));
+        for(let i in localData)
+        {
+            if(localData[i].name == selectedUser.name)
+            {
+                localData[i].groceryList = selectedUser.groceryList;
+                break;
+            }
+        }
+        localStorage.setItem("userData",JSON.stringify(localData));
+        showGroceryList(selectedUser.groceryList);
+    }
 
 function EditItem(index){
     let selectedUser = JSON.parse(localStorage.getItem("selectedUser"));
